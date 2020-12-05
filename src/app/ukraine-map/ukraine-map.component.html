@@ -1,11 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612.47321 408.0199" preserveAspectRatio="xMidYMid meet">
-  <g>
-    <g *ngFor="let region of mapData;let i = index">
-      <path [attr.id]="region.id" [attr.d]="region.d" [attr.title]="region.title" [attr.stroke]="strokeColor" #regionEl
-        (click)="onUaMapClick(region.id)" (mouseenter)="hoveredRegionId = region.id"
-        [attr.fill]="(hoveredRegionId === region.id && isHighlightingHover) ? hoverStateColor : fillStateColor"
-        (mouseleave)="hoveredRegionId = null">
-      </path>
-    </g>
+  <g *ngFor="let region of mapData$ | async;let i = index">
+    <path [attr.id]="region.id" [attr.d]="region.d" [attr.title]="region.title" [attr.stroke]="strokeColor"
+      (click)="onUaMapClick(region.id)" (mouseenter)="hoveredRegionId = region.id"
+      [attr.fill]="(hoveredRegionId === region.id && isHighlightingHover) ? hoverStateColor : fillStateColor"
+      (mouseleave)="hoveredRegionId = null" #regionElement>
+      <title>{{region.title}}</title>
+    </path>
   </g>
 </svg>

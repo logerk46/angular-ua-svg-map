@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'; import { Observable } from 'rxjs';
+;
 import { MapData } from './map-data';
 import { UaMapService } from './ukraine-map.service';
 
@@ -17,7 +17,7 @@ export class UaMapComponent implements OnInit {
 
     @Output() onMapClick = new EventEmitter();
 
-    mapData: MapData[];
+    mapData$: Observable<MapData[]> = this.uaMapService.getUaMapData();;
 
     hoveredRegionId: number = 0;
 
@@ -27,10 +27,5 @@ export class UaMapComponent implements OnInit {
         this.initUaMap();
     }
 
-    private initUaMap(): void {
-        this.uaMapService.getUaMapData()
-            .subscribe((data: MapData[]) => {
-                this.mapData = data;
-        })
-    }
+    private initUaMap(): void { }
 }
